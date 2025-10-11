@@ -1,27 +1,11 @@
-[gd_scene load_steps=24 format=4 uid="uid://cj1uatc67yftn"]
+[gd_scene load_steps=13 format=4 uid="uid://cj1uatc67yftn"]
 
-[ext_resource type="Script" uid="uid://c0nhswjo1o06x" path="res://Scripts/main.gd" id="1_hptm8"]
 [ext_resource type="AudioStream" uid="uid://caigueqvco65f" path="res://sound/Main_theme_song.mp3" id="2_8gbba"]
-[ext_resource type="Texture2D" uid="uid://bd7t227xiqbj5" path="res://images/Character/Left.png" id="3_8gbba"]
-[ext_resource type="Script" uid="uid://dfy4y4vmh0p43" path="res://Scripts/Character_Movment.gd" id="3_jjvhh"]
-[ext_resource type="Texture2D" uid="uid://bpbefxlrt6a3j" path="res://images/Dialog.png" id="5_kry3j"]
-[ext_resource type="Texture2D" uid="uid://kpylmm72f8w0" path="res://Monfera's/08w6e7lcsc-1.png" id="6_21xkr"]
-[ext_resource type="Script" uid="uid://dho7ukjmxhg37" path="res://Scripts/dialog.gd" id="6_ynf5e"]
-[ext_resource type="Texture2D" uid="uid://du6iekjewnk48" path="res://images/Dialog_Menu.png" id="7_6bp64"]
-[ext_resource type="FontFile" uid="uid://bjvw74d2y0xri" path="res://PixelifySans-VariableFont_wght.ttf" id="9_6iyac"]
-[ext_resource type="FontFile" uid="uid://c7b0xfynm2exo" path="res://Bytesized-Regular.ttf" id="9_d1ilt"]
 [ext_resource type="Texture2D" uid="uid://dr58g0hljneaj" path="res://Farm RPG FREE 16x16 - Tiny Asset Pack/Objects/House.png" id="11_d1ilt"]
 [ext_resource type="Texture2D" uid="uid://ldhyqbq7h1fq" path="res://Farm RPG FREE 16x16 - Tiny Asset Pack/Objects/Interior.png" id="12_fdnlq"]
 [ext_resource type="Texture2D" uid="uid://6urxw1bscp6s" path="res://Farm RPG FREE 16x16 - Tiny Asset Pack/Tileset/Tileset Spring.png" id="13_jkdf5"]
 [ext_resource type="Texture2D" uid="uid://br5cimdsme7r8" path="res://images/River.png" id="13_wsu2k"]
 [ext_resource type="Texture2D" uid="uid://c5rg8206b1v80" path="res://Farm RPG FREE 16x16 - Tiny Asset Pack/Objects/Maple Tree.png" id="14_jkdf5"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kry3j"]
-size = Vector2(70, 87)
-
-[sub_resource type="LabelSettings" id="LabelSettings_6iyac"]
-font = ExtResource("9_d1ilt")
-font_size = 500
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d1ilt"]
 texture = ExtResource("11_d1ilt")
@@ -735,80 +719,9 @@ sources/3 = SubResource("TileSetAtlasSource_h1bgf")
 sources/10 = SubResource("TileSetAtlasSource_b3802")
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_hptm8")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_8gbba")
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-script = ExtResource("3_jjvhh")
-
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-texture_filter = 1
-position = Vector2(5.5, -26.5)
-scale = Vector2(4.34375, 4.34375)
-texture = ExtResource("3_8gbba")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(1, -0.5)
-shape = SubResource("RectangleShape2D_kry3j")
-
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
-
-[node name="Dialog" type="CanvasLayer" parent="CharacterBody2D/Camera2D"]
-script = ExtResource("6_ynf5e")
-
-[node name="Dialog" type="TextureRect" parent="CharacterBody2D/Camera2D/Dialog"]
-texture_filter = 1
-offset_left = 587.0
-offset_top = 761.0
-offset_right = 1343.0
-offset_bottom = 1013.0
-texture = ExtResource("5_kry3j")
-
-[node name="Text" type="RichTextLabel" parent="CharacterBody2D/Camera2D/Dialog/Dialog"]
-layout_mode = 0
-offset_left = 263.0
-offset_top = 45.0
-offset_right = 9343.0
-offset_bottom = 3317.0
-scale = Vector2(0.05, 0.05)
-theme_override_fonts/normal_font = ExtResource("9_6iyac")
-theme_override_font_sizes/normal_font_size = 500
-text = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-scroll_following_visible_characters = true
-
-[node name="Name" type="Label" parent="CharacterBody2D/Camera2D/Dialog/Dialog"]
-layout_mode = 0
-offset_left = 100.0
-offset_top = 8.0
-offset_right = 2879.999
-offset_bottom = 633.0
-scale = Vector2(0.05, 0.05)
-text = "Name"
-label_settings = SubResource("LabelSettings_6iyac")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-uppercase = true
-
-[node name="TextureRect" type="TextureRect" parent="CharacterBody2D/Camera2D/Dialog/Dialog"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 55.0
-offset_top = 47.0
-offset_right = 242.0
-offset_bottom = 218.0
-texture = ExtResource("6_21xkr")
-expand_mode = 1
-
-[node name="Menu" type="TextureRect" parent="CharacterBody2D/Camera2D/Dialog"]
-texture_filter = 1
-offset_left = 1352.0
-offset_top = 743.0
-offset_right = 1621.0
-offset_bottom = 1028.0
-texture = ExtResource("7_6bp64")
 
 [node name="River" type="TileMapLayer" parent="."]
 texture_filter = 1
@@ -820,14 +733,16 @@ collision_visibility_mode = 1
 
 [node name="Houses" type="TileMapLayer" parent="."]
 texture_filter = 1
+position = Vector2(1468, 240.99998)
 scale = Vector2(4.495, 4.495)
 tile_map_data = PackedByteArray("AADy//7/AAAJAAEAAADy////AAAJAAIAAADy/wAAAAAJAAMAAADy/wEAAAAJAAQAAADy/wIAAAAJAAUAAADz//3/AAAKAAAAAADz//7/AAAKAAEAAADz////AAAKAAIAAADz/wAAAAAKAAMAAADz/wEAAAAKAAQAAADz/wIAAAAKAAUAAAD0//3/AAALAAAAAAD0//7/AAALAAEAAAD0////AAALAAIAAAD0/wAAAAALAAMAAAD0/wEAAAALAAQAAAD0/wIAAAALAAUAAAD0/wMAAAALAAYAAAD1//3/AAAMAAAAAAD1//7/AAAMAAEAAAD1////AAAMAAIAAAD1/wAAAAAMAAMAAAD1/wEAAAAMAAQAAAD1/wIAAAAMAAUAAAD1/wMAAAAMAAYAAAD2//7/AAANAAEAAAD2////AAANAAIAAAD2/wAAAAANAAMAAAD2/wEAAAANAAQAAAD2/wIAAAANAAUAAAA=")
 tile_set = SubResource("TileSet_6iyac")
 
 [node name="Pathwalks" type="TileMapLayer" parent="."]
 texture_filter = 1
+position = Vector2(1468, 240.99998)
 scale = Vector2(4.495, 4.495)
-tile_map_data = PackedByteArray("AADy//7/AAAJAAEAAADy////AAAJAAIAAADy/wAAAAAJAAMAAADy/wEAAAAJAAQAAADy/wIAAAAJAAUAAADz//3/AAAKAAAAAADz//7/AAAKAAEAAADz////AAAKAAIAAADz/wAAAAAKAAMAAADz/wEAAAAKAAQAAADz/wIAAAAKAAUAAAD0//3/AAALAAAAAAD0//7/AAALAAEAAAD0////AAALAAIAAAD0/wAAAAALAAMAAAD0/wEAAAALAAQAAAD0/wMAAgAIAAkAAAD1//3/AAAMAAAAAAD1//7/AAAMAAEAAAD1////AAAMAAIAAAD1/wAAAAAMAAMAAAD1/wEAAAAMAAQAAAD1/wIAAgALAAoAAAD1/wMAAgALAAoAAAD2//7/AAANAAEAAAD2////AAANAAIAAAD2/wAAAAANAAMAAAD2/wEAAAANAAQAAAD2/wIAAgAIAAUAAAD0/wIAAgAIAAgAAAD1/wQAAgAJAAoAAAD0/wQAAgAIAAkAAAD0/wUAAgAIAAsAAAD1/wUAAgAJAAsAAAD4/wMAAgAJAAcAAAD5/wMAAgAJAAcAAAD6/wMAAgAJAAcAAAD2/wQAAgAJAAoAAAD3/wQAAgAJAAoAAAD4/wQAAgAJAAoAAAD5/wQAAgAJAAoAAAD6/wQAAgAJAAoAAAD2/wUAAgAJAA8AAAD3/wUAAgAJAA8AAAD4/wUAAgAJAA8AAAD5/wUAAgAJAA8AAAD6/wUAAgAJAA8AAAD3/wMAAgAJAAcAAAD2/wMAAgAIAAcAAAA=")
+tile_map_data = PackedByteArray("AADy//7/AAAJAAEAAADy////AAAJAAIAAADy/wAAAAAJAAMAAADy/wEAAAAJAAQAAADy/wIAAAAJAAUAAADz//3/AAAKAAAAAADz//7/AAAKAAEAAADz////AAAKAAIAAADz/wAAAAAKAAMAAADz/wEAAAAKAAQAAADz/wIAAAAKAAUAAAD0//3/AAALAAAAAAD0//7/AAALAAEAAAD0////AAALAAIAAAD0/wAAAAALAAMAAAD0/wEAAAALAAQAAAD0/wMAAgAIAAkAAAD1//3/AAAMAAAAAAD1//7/AAAMAAEAAAD1////AAAMAAIAAAD1/wAAAAAMAAMAAAD1/wEAAAAMAAQAAAD1/wIAAgALAAoAAAD1/wMAAgALAAoAAAD2//7/AAANAAEAAAD2////AAANAAIAAAD2/wAAAAANAAMAAAD2/wEAAAANAAQAAAD2/wIAAgAIAAUAAAD0/wIAAgAIAAgAAAD1/wQAAgAJAAoAAAD0/wQAAgAIAAkAAAD0/wUAAgAIAAsAAAD1/wUAAgAJAAsAAAD4/wMAAgAJAAcAAAD5/wMAAgAJAAcAAAD6/wMAAgAJAAcAAAD2/wQAAgAJAAoAAAD3/wQAAgAJAAoAAAD4/wQAAgAJAAoAAAD5/wQAAgAJAAoAAAD6/wQAAgAJAAoAAAD2/wUAAgAJAA8AAAD3/wUAAgAJAA8AAAD4/wUAAgAJAA8AAAD5/wUAAgAJAA8AAAD6/wUAAgAJAA8AAAD3/wMAAgAJAAcAAAD2/wMAAgAIAAcAAAD7/wQAAgAJAAoAAAD8/wQAAgAJAAoAAAD9/wQAAgAJAAoAAAD+/wQAAgAJAAoAAAD//wQAAgAJAAoAAAAAAAQAAgAJAAoAAAABAAQAAgAJAAoAAAACAAQAAgAJAAoAAAADAAQAAgAJAAoAAAAFAAQAAgAJAAoAAAAEAAQAAgAJAAoAAAAGAAQAAgAJAAoAAAD7/wUAAgAJAAsAAAD8/wUAAgAJAAsAAAD9/wUAAgAJAAsAAAD+/wUAAgAJAAsAAAD//wUAAgAJAAsAAAAAAAUAAgAJAAsAAAABAAUAAgAJAAsAAAACAAUAAgAJAAsAAAADAAUAAgAJAAsAAAAEAAUAAgAJAAsAAAAFAAUAAgAJAAsAAAAGAAUAAgAJAAsAAAD7/wMAAgAJAAcAAAD8/wMAAgAJAAcAAAD9/wMAAgAJAAcAAAD+/wMAAgAJAAcAAAD//wMAAgAJAAcAAAAAAAMAAgAJAAcAAAABAAMAAgAJAAcAAAACAAMAAgAJAAcAAAADAAMAAgAJAAcAAAAEAAMAAgAJAAcAAAAFAAMAAgAJAAcAAAAGAAMAAgAJAAcAAAA=")
 tile_set = SubResource("TileSet_6iyac")
 collision_visibility_mode = 1
 
@@ -840,6 +755,7 @@ collision_visibility_mode = 1
 
 [node name="Trees,Bush" type="TileMapLayer" parent="."]
 texture_filter = 1
+position = Vector2(1468, 240.99998)
 scale = Vector2(4.495, 4.495)
 tile_map_data = PackedByteArray("AADy//7/AAAJAAEAAADy////AAAJAAIAAADy/wIAAAAJAAUAAADz//3/AAAKAAAAAADz//7/AAAKAAEAAADz////AAAKAAIAAAD0//3/AAALAAAAAAD0//7/AAALAAEAAAD0////AAALAAIAAAD1//3/AAAMAAAAAAD1//7/AAAMAAEAAAD1////AAAMAAIAAAD2//7/AAANAAEAAAD2////AAANAAIAAAD4/wMAAwAFAAIAAAD2/wEAAAANAAQAAAD1/wEAAAAMAAQAAAD0/wEAAAALAAQAAADz/wEAAAAKAAQAAADy/wEAAAAJAAQAAAD2/wAAAAANAAMAAAD1/wAAAAAMAAMAAAD0/wAAAAALAAMAAADz/wAAAAAKAAMAAADy/wAAAAAJAAMAAAD3/wEAAwAEAAAAAAD3/wIAAwAEAAEAAAD4/wEAAwAFAAAAAAD4/wIAAwAFAAEAAAD3/wMAAwAEAAIAAADz/wIAAAAKAAUAAAA=")
 tile_set = SubResource("TileSet_6iyac")

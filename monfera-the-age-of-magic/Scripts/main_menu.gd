@@ -32,11 +32,8 @@ func play() -> void:
 			await get_tree().create_timer(0.01).timeout 
 			i += 1
 		var music = get_tree().root.get_node("House/AudioStreamPlayer2D")
-		var char = get_tree().root.get_node("House/CharacterBody2D")
 		music.play()
-		char.enabled = true
 		await get_tree().create_timer(2).timeout
-		main.Main_start()
 
 		
 

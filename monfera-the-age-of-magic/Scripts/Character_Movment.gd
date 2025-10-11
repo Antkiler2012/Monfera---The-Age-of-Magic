@@ -2,11 +2,10 @@ extends CharacterBody2D
 
 @export var grid_size: int = 3
 @export var move_speed: float = 100
-@export var enabled: bool = false  # only moves if true
+@export var enabled: bool = false 
 
 @onready var sprite = $Sprite2D
 
-# Load images from filesystem
 var sprite_up   = load("res://Images/Character/Up.png")
 var sprite_down = load("res://Images/Character/Down.png")
 var sprite_left = load("res://Images/Character/Left.png")
@@ -53,10 +52,6 @@ func handle_input():
 	if dir_x != Vector2.ZERO or dir_y != Vector2.ZERO:
 		var motion = (dir_x * grid_size) + (dir_y * grid_size)
 		var collision = move_and_collide(motion)
-		
-		if collision:
-			if collision.get_collider().name == "Exit":
-				print("test")
 
 func die():
 	get_tree().call_deferred("reload_current_scene")

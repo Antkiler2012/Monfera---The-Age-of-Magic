@@ -13,7 +13,6 @@ func _ready() -> void:
 func _set(property: StringName, value: Variant) -> bool:
 	match property:
 		"text":
-			# listen for text changes
 			update_font_size()
 
 	return false
