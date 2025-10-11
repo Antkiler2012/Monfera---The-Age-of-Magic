@@ -1,6 +1,9 @@
-[gd_scene load_steps=13 format=4 uid="uid://cj1uatc67yftn"]
+[gd_scene load_steps=18 format=4 uid="uid://cj1uatc67yftn"]
 
 [ext_resource type="AudioStream" uid="uid://caigueqvco65f" path="res://sound/Main_theme_song.mp3" id="2_8gbba"]
+[ext_resource type="Script" uid="uid://dghj0h7awmua4" path="res://Scenes/npc.gd" id="7_ynf5e"]
+[ext_resource type="Texture2D" uid="uid://dbjw6cpmptgtc" path="res://images/Pawmont_character/Front.png" id="8_hptm8"]
+[ext_resource type="Script" uid="uid://ffgy21gcdhg4" path="res://Scripts/Pawmont_Area.gd" id="9_d1ilt"]
 [ext_resource type="Texture2D" uid="uid://dr58g0hljneaj" path="res://Farm RPG FREE 16x16 - Tiny Asset Pack/Objects/House.png" id="11_d1ilt"]
 [ext_resource type="Texture2D" uid="uid://ldhyqbq7h1fq" path="res://Farm RPG FREE 16x16 - Tiny Asset Pack/Objects/Interior.png" id="12_fdnlq"]
 [ext_resource type="Texture2D" uid="uid://6urxw1bscp6s" path="res://Farm RPG FREE 16x16 - Tiny Asset Pack/Tileset/Tileset Spring.png" id="13_jkdf5"]
@@ -718,6 +721,12 @@ sources/2 = SubResource("TileSetAtlasSource_k12tt")
 sources/3 = SubResource("TileSetAtlasSource_h1bgf")
 sources/10 = SubResource("TileSetAtlasSource_b3802")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6iyac"]
+size = Vector2(66, 135)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fdnlq"]
+size = Vector2(305.5, 251)
+
 [node name="Node2D" type="Node2D"]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
@@ -760,3 +769,23 @@ scale = Vector2(4.495, 4.495)
 tile_map_data = PackedByteArray("AADy//7/AAAJAAEAAADy////AAAJAAIAAADy/wIAAAAJAAUAAADz//3/AAAKAAAAAADz//7/AAAKAAEAAADz////AAAKAAIAAAD0//3/AAALAAAAAAD0//7/AAALAAEAAAD0////AAALAAIAAAD1//3/AAAMAAAAAAD1//7/AAAMAAEAAAD1////AAAMAAIAAAD2//7/AAANAAEAAAD2////AAANAAIAAAD4/wMAAwAFAAIAAAD2/wEAAAANAAQAAAD1/wEAAAAMAAQAAAD0/wEAAAALAAQAAADz/wEAAAAKAAQAAADy/wEAAAAJAAQAAAD2/wAAAAANAAMAAAD1/wAAAAAMAAMAAAD0/wAAAAALAAMAAADz/wAAAAAKAAMAAADy/wAAAAAJAAMAAAD3/wEAAwAEAAAAAAD3/wIAAwAEAAEAAAD4/wEAAwAFAAAAAAD4/wIAAwAFAAEAAAD3/wMAAwAEAAIAAADz/wIAAAAKAAUAAAA=")
 tile_set = SubResource("TileSet_6iyac")
 collision_visibility_mode = 1
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("7_ynf5e")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture_filter = 1
+position = Vector2(1085, 512)
+scale = Vector2(0.45569637, 0.45569637)
+texture = ExtResource("8_hptm8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(1084, 511.5)
+shape = SubResource("RectangleShape2D_6iyac")
+
+[node name="Area2D" type="Area2D" parent="CharacterBody2D"]
+script = ExtResource("9_d1ilt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
+position = Vector2(1087, 500)
+shape = SubResource("RectangleShape2D_fdnlq")

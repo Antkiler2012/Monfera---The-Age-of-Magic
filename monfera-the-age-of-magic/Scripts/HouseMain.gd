@@ -60,7 +60,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			return
 
 		if not Main.typing_finished:
-			Main.skip_typing = true  # skip current line
+			Main.skip_typing = true 
 		else:
 			current_dialog_index += 1
 			if current_dialog_index < dialogs.size():
