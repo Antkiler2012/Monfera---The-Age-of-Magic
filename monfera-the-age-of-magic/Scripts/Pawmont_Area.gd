@@ -15,42 +15,48 @@ var dialog_started = false
 var dialogs = [
 	{
 		"name": "Pawmont",
-		"text": "Ah, Antoni! Just in time. The Etherflow feels restless tonight. You sense it too, don’t you? The Cradle of Magic has been glowing brighter than ever…",
+		"text": "Ah, Antoni! Just in time. The Etherflow feels… a bit restless tonight. You feel it too, right? The Cradle of Magic hasn’t glowed like this in ages…",
 		"image": preload("res://images/Pawmont_character/Face.png"),
-		"option1": "Yeah",
-		"option2": "No?",
-		"option3": false,
-		"option4": false,
+		"option1": "Restless? What do you mean?",
+		"option2": "Should we be worried?",
+		"option3": "Maybe it’s just the sunset.",
+		"option4": "(Stay quiet)",
 		"next_option1": 1, 
-		"next_option2": 2  
+		"next_option2": 2,  
+		"next_option3": 3, 
+		"next_option4": 4,  
 	},
 
 	{
 		"name": "Etherling",
-		"text": "Great! I knew you’d feel it too. Let’s get moving and explore the Etherflow together!",
+		"text": "When the Etherflow moves like this, it’s… unpredictable. Could be exciting, could be trouble.",
 		"image": preload("res://images/Pawmont_character/Face.png"),
-		"option1": "test",
-		"option2": "test_two?",
-		"option3": false,
-		"option4": false,
-		"next_option1": 3, 
-		"next_option2": 4,
+		"next": 5,
 	},
 
 	{
 		"name": "Etherling",
-		"text": "Hmm, that’s odd. Maybe you need to focus more. Take a deep breath and try to sense it again.",
+		"text": "Worried? Not really. But curiosity always pays off.",
 		"image": preload("res://images/Pawmont_character/Face.png"),
+		"next": 5,
 	},
 	{
 		"name": "Etherling",
-		"text": "Test",
+		"text": "If only sunsets hummed like the Etherflow… this is something different.",
 		"image": preload("res://images/Pawmont_character/Face.png"),
+		"next": 5,
 	},
 		{
 		"name": "Etherling",
-		"text": "Test two",
+		"text": "Hmm… sometimes, the best way to understand magic is to simply watch it. Keep your senses open tonight",
 		"image": preload("res://images/Pawmont_character/Face.png"),
+		"next": 5,
+	},
+	{
+		"name": "Etherling",
+		"text": "Tomorrow is the Festival of Light, of course. But tonight… the lake might show things no festival ever will.",
+		"image": preload("res://images/Pawmont_character/Face.png"),
+		"next": 6,
 	},
 ]
 
@@ -119,17 +125,15 @@ func start_dialog_sequence():
 func show_current_dialog():
 	if Main and current_dialog_index < dialogs.size():
 		var data = dialogs[current_dialog_index]
-
 		var options = {}
 		for i in range(1, 5):
 			var key = "option%d" % i
 			if data.has(key):
 				options[key] = data[key]
-
+		print("Showing dialog index:", current_dialog_index)
 		await Main.Show_Dialog(data["name"], data["text"], data["image"], options)
-		
 		Main.option_callback = Callable(self, "_on_option_selected")
-		
+
 func _unhandled_input(event: InputEvent) -> void:
 	if Main.Menu.visible:
 		return
@@ -140,8 +144,14 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 
 	if event.is_action_pressed("ui_accept") or (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed):
-		current_dialog_index += 1
-		if current_dialog_index < dialogs.size():
-			show_current_dialog()
+		var current_data = dialogs[current_dialog_index]
+		if current_data.has("next"):
+			current_dialog_index = current_data["next"]
 		else:
+			current_dialog_index += 1
+			
+		if current_dialog_index < dialogs.size():
+			await show_current_dialog()
+		else:
+			await get_tree().create_timer(0.25).timeout
 			Main.hide_dialog()

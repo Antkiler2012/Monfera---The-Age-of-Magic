@@ -41,16 +41,21 @@ func _ready():
 	audio_player.volume_db = -30
 
 func Show_Dialog(name: String, text: String, image: Texture2D, options: Dictionary = {}, callback = null) -> void:
+	# Reset typing control
+	typing_finished = false
+	skip_typing = false
+
+	# Show dialog elements
 	Dialog.visible = true
 	Dialog_Name.text = name
 	Dialog_Image.texture = image
 	Dialog_Text.text = ""
-	typing_finished = false
-	skip_typing = false
 
+	# Hide menu while typing
 	if Menu:
 		Menu.visible = false
 
+	# Set callback
 	if callback != null:
 		option_callback = callback
 	else:
@@ -103,6 +108,10 @@ func _on_option_pressed(option_index: int) -> void:
 
 
 func type_text(full_text: String) -> void:
+	typing_finished = false
+	skip_typing = false
+	Dialog_Text.text = ""
+
 	for i in range(full_text.length()):
 		if skip_typing:
 			Dialog_Text.text = full_text
@@ -117,6 +126,7 @@ func type_text(full_text: String) -> void:
 
 	typing_finished = true
 	skip_typing = false
+
 
 func hide_dialog() -> void:
 	Dialog.visible = false
