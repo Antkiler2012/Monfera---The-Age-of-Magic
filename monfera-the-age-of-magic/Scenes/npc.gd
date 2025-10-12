@@ -1,8 +1,9 @@
 extends CharacterBody2D
 
 @export var speed = 50
-@export var path_points: Array = []  # Array of Vector2 points
+@export var path_points: Array = [] 
 var current_point = 0
+
 
 func _ready():
 	if path_points.size() > 0:
@@ -20,3 +21,5 @@ func _physics_process(delta):
 
 	if global_position.distance_to(target) < 5:
 		current_point = (current_point + 1) % path_points.size()
+	
+		

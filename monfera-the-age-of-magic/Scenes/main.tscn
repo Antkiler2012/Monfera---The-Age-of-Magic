@@ -770,22 +770,22 @@ tile_map_data = PackedByteArray("AADy//7/AAAJAAEAAADy////AAAJAAIAAADy/wIAAAAJAAU
 tile_set = SubResource("TileSet_6iyac")
 collision_visibility_mode = 1
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="Pawmont" type="CharacterBody2D" parent="."]
 script = ExtResource("7_ynf5e")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Pawmont"]
 texture_filter = 1
 position = Vector2(1085, 512)
 scale = Vector2(0.45569637, 0.45569637)
 texture = ExtResource("8_hptm8")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pawmont"]
 position = Vector2(1084, 511.5)
 shape = SubResource("RectangleShape2D_6iyac")
 
-[node name="Area2D" type="Area2D" parent="CharacterBody2D"]
+[node name="Area2D" type="Area2D" parent="Pawmont"]
 script = ExtResource("9_d1ilt")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pawmont/Area2D"]
 position = Vector2(1087, 500)
 shape = SubResource("RectangleShape2D_fdnlq")
