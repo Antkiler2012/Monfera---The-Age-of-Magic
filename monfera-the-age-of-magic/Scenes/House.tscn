@@ -294,6 +294,7 @@ shape = SubResource("RectangleShape2D_neyu1")
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 
 [node name="Dialog" type="CanvasLayer" parent="CharacterBody2D/Camera2D"]
+layer = 2
 script = ExtResource("6_1tsjo")
 
 [node name="Dialog" type="TextureRect" parent="CharacterBody2D/Camera2D/Dialog"]
@@ -405,6 +406,7 @@ offset_left = -473.0
 offset_top = -552.0
 offset_right = 2328.0
 offset_bottom = 1275.0
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Area2D" type="Area2D" parent="."]

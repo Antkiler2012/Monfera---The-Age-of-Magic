@@ -5,7 +5,8 @@ extends Area2D
 
 var player_inside = false
 var main
-
+var Night_trans_run = false
+	
 @onready var Main = get_tree().get_root().get_node("House/CharacterBody2D/Camera2D/Dialog")
 @onready var Night = get_tree().get_root().get_node("House/CharacterBody2D/Camera2D/Night")
 @onready var NightTint = get_tree().get_root().get_node("House/CharacterBody2D/Camera2D/Night/ColorRect")
@@ -62,6 +63,39 @@ var dialogs = [
 		"text": "By the way, tomorrow is the Festival of Light, of course.",
 		"image": preload("res://images/Pawmont_character/Face.png"),
 		"next": 6,
+		"enter": false,
+	},
+		{
+		"name": "Kai",
+		"text": "Aight, first one to get a monfera wins, once you catch a monfera come back here",
+		"image": preload("res://images/Pawmont_character/Face.png"),
+		"next": 6,
+		"option1": "Aight",
+		"option2": "What?",
+		"option3": false,
+		"option4": false,
+		"next_option1": 7, 
+		"next_option2": 8,  
+		"enter": false,
+	},
+	{
+		"name": "Kai",
+		"text": "Aight, three, two, one GO!",
+		"image": preload("res://images/Pawmont_character/Face.png"),
+		"next": 50,
+		"enter": true,
+	},
+		{
+		"name": "Kai",
+		"text": "ARE YOU DUMB?first one to get a monfera wins, once you catch a monfera come back here whats so hard about it?",
+		"image": preload("res://images/Pawmont_character/Face.png"),
+		"next": 6,
+		"option1": "Aight",
+		"option2": "What?",
+		"option3": false,
+		"option4": false,
+		"next_option1": 7, 
+		"next_option2": 8,  
 		"enter": false,
 	},
 ]
@@ -173,7 +207,7 @@ func show_current_dialog():
 					}
 				])
 
-				current_dialog_index += 1
+				current_dialog_index = 9
 				await show_current_dialog()
 			else:
 				push_error("Kai node not found! Check the node path.")
@@ -192,31 +226,39 @@ func try_progress_dialog() -> void:
 		if current_dialog_index < dialogs.size():
 			await show_current_dialog()
 		else:
-			await get_tree().create_timer(0.25).timeout
-			Main.hide_dialog()
-
-			if Night:
-				Night.visible = true
-				var start_color = NightTint.color
-				start_color.a = 0
-				NightTint.color = start_color 
-
-			if camera and NightTint:
-				var tween = create_tween()
-				var target_pos = camera.position + Vector2(6800, 0)
-				tween.tween_property(camera, "position", target_pos, 5).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
-				var start_color = NightTint.color
-				var end_color = start_color
-				end_color.a = 0.6
-				tween.tween_property(NightTint, "color", end_color, 2).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+			if Night_trans_run == true:
+				print("run")
+			else:
 			
-				await tween.finished
-				var pawmont_target_pos = kai.position + Vector2(-500000, 0)
-				var pawmont_tween = create_tween()
-				pawmont_tween.tween_property(Pawmont, "position", pawmont_target_pos, 0).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
-				await get_tree().create_timer(2).timeout
-				camera.position = Vector2(0, 0)
-		
+				await get_tree().create_timer(0.25).timeout
+				Main.hide_dialog()
+
+				if Night:
+					Night.visible = true
+					var start_color = NightTint.color
+					start_color.a = 0
+					NightTint.color = start_color 
+
+				if camera and NightTint:
+					var tween = create_tween()
+					var target_pos = camera.position + Vector2(6800, 0)
+					tween.tween_property(camera, "position", target_pos, 5).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+					var start_color = NightTint.color
+					var end_color = start_color
+					end_color.a = 0.6
+					tween.tween_property(NightTint, "color", end_color, 2).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+			
+					await tween.finished
+					var pawmont_target_pos = kai.position + Vector2(-500000, 0)
+					var pawmont_tween = create_tween()
+					pawmont_tween.tween_property(Pawmont, "position", pawmont_target_pos, 0).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
+					await get_tree().create_timer(2).timeout
+					Night_trans_run = true
+					camera.position = Vector2(0, 0)
+					current_dialog_index = 6
+					await show_current_dialog()
+
+				
 
 
 func _unhandled_input(event):
