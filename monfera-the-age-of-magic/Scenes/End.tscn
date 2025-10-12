@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://b253etbgik0x"]
+
+[ext_resource type="FontFile" uid="uid://bjvw74d2y0xri" path="res://PixelifySans-VariableFont_wght.ttf" id="1_pw64i"]
+
+[node name="End" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(48.0362, 27.373127)
+color = Color(0.57838106, 0.506143, 0.33283728, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -263.0
+offset_top = 200.0
+offset_right = 639.0
+offset_bottom = 638.0
+scale = Vector2(2.710112, 1.4085821)
+theme_override_fonts/font = ExtResource("1_pw64i")
+theme_override_font_sizes/font_size = 50
+text = "The end
+thanks for playing
+i know the game is bad but
+thats because i started
+late and i dident have
+ that much time
+to make the game"
+horizontal_alignment = 1

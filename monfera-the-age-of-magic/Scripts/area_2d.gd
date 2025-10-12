@@ -41,5 +41,5 @@ func _change_scene():
 		return
 	if get_tree().current_scene:
 		get_tree().current_scene.free()
-	get_tree().current_scene = new_scene
-	get_tree().root.add_child(new_scene)
+		get_tree().current_scene = new_scene
+		get_tree().root.add_child(new_scene)
