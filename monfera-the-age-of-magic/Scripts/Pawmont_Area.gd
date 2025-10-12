@@ -11,6 +11,7 @@ var main
 @onready var NightTint = get_tree().get_root().get_node("House/CharacterBody2D/Camera2D/Night/ColorRect")
 @onready var camera = get_tree().get_root().get_node("House/CharacterBody2D/Camera2D")
 @onready var kai = get_tree().get_root().get_node("Node2D/Kai")
+@onready var Pawmont = get_tree().get_root().get_node("Node2D/Pawmont")
 
 var current_dialog_index = 0
 var dialog_started = false
@@ -18,7 +19,7 @@ var dialog_started = false
 var dialogs = [
 	{
 		"name": "Pawmont",
-		"text": "Ah, Antoni! Just in time. The Magical River feels… a bit restless tonight. You feel it too, right? The Cradle of Magic hasn’t glowed like this in ages…",
+		"text": "Ah! Just in time. The Magical River feels… a bit restless tonight. You feel it too, right? The Cradle of Magic hasn’t glowed like this in ages…",
 		"image": preload("res://images/Pawmont_character/Face.png"),
 		"option1": "Restless? What do you mean?",
 		"option2": "Should we be worried?",
@@ -210,6 +211,9 @@ func try_progress_dialog() -> void:
 				tween.tween_property(NightTint, "color", end_color, 2).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 			
 				await tween.finished
+				var pawmont_target_pos = kai.position + Vector2(-500000, 0)
+				var pawmont_tween = create_tween()
+				pawmont_tween.tween_property(Pawmont, "position", pawmont_target_pos, 0).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
 				await get_tree().create_timer(2).timeout
 				camera.position = Vector2(0, 0)
 		

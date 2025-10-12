@@ -7,7 +7,7 @@ var char
 var dialogs = [
 	{
 		"name": "Etherling",
-		"text": "Ah! Hello, Antoni. You’re finally awake. My name is Etherling, I’ll be your guide on this journey.",
+		"text": "Ah! Hello. You’re finally awake. My name is Etherling, I’ll be your guide on this journey.",
 		"image": preload("res://images/magical_ghost.png")
 	},
 	{
