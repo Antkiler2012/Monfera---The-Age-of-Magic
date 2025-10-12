@@ -6,10 +6,10 @@ extends CharacterBody2D
 
 @onready var sprite = $Sprite2D
 
-var sprite_up   = load("res://Images/Character/Up.png")
-var sprite_down = load("res://Images/Character/Down.png")
-var sprite_left = load("res://Images/Character/Left.png")
-var sprite_right = load("res://Images/Character/Right.png")
+var sprite_up   = load("res://images/Character/Up.png")
+var sprite_down = load("res://images/Character/Down.png")
+var sprite_left = load("res://images/Character/Left.png")
+var sprite_right = load("res://images/Character/Right.png")
 
 var target_position: Vector2
 var moving: bool = false

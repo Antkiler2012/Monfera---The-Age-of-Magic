@@ -144,8 +144,8 @@ func _process(delta):
 		_on_interact()
 
 func _show_interact_prompt(player, visible):
-	if interact_node:
 		interact_node.visible = visible
+		interact_node.get_node("Label").text = "Press E to interact"
 
 func _on_interact():
 	for name in nodes_to_remove:

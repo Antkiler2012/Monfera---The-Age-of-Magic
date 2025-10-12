@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Monfera – The Age of Magic"
-run/main_scene="uid://cj1uatc67yftn"
+run/main_scene="uid://bhvdna3jojsyh"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 

@@ -414,13 +414,14 @@ visible = false
 script = ExtResource("6_1tsjo")
 
 [node name="Label" type="Label" parent="CharacterBody2D/Camera2D/Interact"]
-offset_left = 655.0
+offset_left = 2.0
 offset_top = 1011.0
-offset_right = 1274.0
+offset_right = 1913.0
 offset_bottom = 1071.0
 theme_override_fonts/font = ExtResource("8_nssql")
 theme_override_font_sizes/font_size = 50
 text = "Press e to exit the house"
+horizontal_alignment = 1
 
 [node name="Night" type="CanvasLayer" parent="CharacterBody2D/Camera2D"]
 visible = false
@@ -461,6 +462,16 @@ offset_top = 18.0
 offset_right = 191.0
 offset_bottom = 41.0
 scale = Vector2(2.5584152, 2.5584152)
+
+[node name="fade" type="ColorRect" parent="CharacterBody2D/Camera2D"]
+visible = false
+z_index = 4
+offset_left = -1749.0
+offset_top = -1353.0
+offset_right = 3661.0
+offset_bottom = 2179.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(709, 479)
