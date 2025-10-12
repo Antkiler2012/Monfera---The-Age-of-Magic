@@ -226,11 +226,12 @@ sources/6 = SubResource("TileSetAtlasSource_1tsjo")
 sources/7 = SubResource("TileSetAtlasSource_neyu1")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_neyu1"]
-size = Vector2(38.135483, 100.84747)
+size = Vector2(50.847466, 138.13557)
 
 [sub_resource type="LabelSettings" id="LabelSettings_nssql"]
 font = ExtResource("9_y0ty6")
 font_size = 500
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sc4v1"]
 size = Vector2(6.141644, 20.617065)
@@ -283,12 +284,12 @@ script = ExtResource("4_1q7ox")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
 texture_filter = 1
-position = Vector2(-2.5423193, -1.6949127)
-scale = Vector2(0.337, 0.337)
+position = Vector2(5.4862366, 17.675575)
+scale = Vector2(0.4644374, 0.4644374)
 texture = ExtResource("5_tjhet")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(-1.2712402, -2.1186218)
+position = Vector2(5.084656, 16.525421)
 shape = SubResource("RectangleShape2D_neyu1")
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
@@ -313,6 +314,7 @@ offset_top = 45.0
 offset_right = 9343.0
 offset_bottom = 3317.0
 scale = Vector2(0.05, 0.05)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("8_nssql")
 theme_override_font_sizes/normal_font_size = 500
 text = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
@@ -349,41 +351,45 @@ visible = false
 texture_filter = 1
 offset_left = 1352.0
 offset_top = 743.0
-offset_right = 1621.0
+offset_right = 1796.0
 offset_bottom = 1028.0
 texture = ExtResource("11_ct606")
 
 [node name="Option_1" type="Button" parent="CharacterBody2D/Camera2D/Dialog/Menu"]
 visible = false
 layout_mode = 0
-offset_left = 70.0
-offset_top = 50.0
-offset_right = 199.0
-offset_bottom = 88.0
+offset_left = 126.0
+offset_top = 57.0
+offset_right = 255.0
+offset_bottom = 95.0
+scale = Vector2(1.4987488, 0.9860189)
 
 [node name="Option_2" type="Button" parent="CharacterBody2D/Camera2D/Dialog/Menu"]
 visible = false
 layout_mode = 0
-offset_left = 70.0
-offset_top = 92.0
-offset_right = 199.0
-offset_bottom = 130.0
+offset_left = 126.0
+offset_top = 99.0
+offset_right = 255.0
+offset_bottom = 137.0
+scale = Vector2(1.52, 1)
 
 [node name="Option_3" type="Button" parent="CharacterBody2D/Camera2D/Dialog/Menu"]
 visible = false
 layout_mode = 0
-offset_left = 70.0
-offset_top = 134.0
-offset_right = 199.0
-offset_bottom = 172.0
+offset_left = 126.0
+offset_top = 141.0
+offset_right = 255.0
+offset_bottom = 179.0
+scale = Vector2(1.52, 1)
 
 [node name="Option_4" type="Button" parent="CharacterBody2D/Camera2D/Dialog/Menu"]
 visible = false
 layout_mode = 0
-offset_left = 70.0
-offset_top = 176.0
-offset_right = 199.0
-offset_bottom = 214.0
+offset_left = 126.0
+offset_top = 183.0
+offset_right = 255.0
+offset_bottom = 221.0
+scale = Vector2(1.52, 1)
 
 [node name="Interact" type="CanvasLayer" parent="CharacterBody2D/Camera2D"]
 visible = false
