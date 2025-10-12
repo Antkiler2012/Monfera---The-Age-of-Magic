@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://dfy4y4vmh0p43" path="res://Scripts/Character_Movment.gd" id="4_1q7ox"]
 [ext_resource type="Texture2D" uid="uid://bobbqh1d7bdxp" path="res://images/Floor_Border_Two.png" id="4_tjhet"]
 [ext_resource type="Texture2D" uid="uid://5kltq0lvpn5h" path="res://images/Floor_border.png" id="5_1tsjo"]
-[ext_resource type="Texture2D" uid="uid://bd7t227xiqbj5" path="res://images/Character/Left.png" id="5_tjhet"]
+[ext_resource type="Texture2D" uid="uid://expaujjo2g2p" path="res://images/Character/Left.png" id="5_tjhet"]
 [ext_resource type="Script" uid="uid://dho7ukjmxhg37" path="res://Scripts/dialog.gd" id="6_1tsjo"]
 [ext_resource type="Texture2D" uid="uid://b5ibc7ft071rj" path="res://images/Wall.png" id="6_neyu1"]
 [ext_resource type="Texture2D" uid="uid://bpbefxlrt6a3j" path="res://images/Dialog.png" id="7_neyu1"]
@@ -226,7 +226,7 @@ sources/6 = SubResource("TileSetAtlasSource_1tsjo")
 sources/7 = SubResource("TileSetAtlasSource_neyu1")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_neyu1"]
-size = Vector2(70, 87)
+size = Vector2(38.135483, 100.84747)
 
 [sub_resource type="LabelSettings" id="LabelSettings_nssql"]
 font = ExtResource("9_y0ty6")
@@ -277,18 +277,18 @@ tile_set = SubResource("TileSet_8h1ko")
 stream = ExtResource("17_neyu1")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(777.99994, 219)
+position = Vector2(777, 239)
 scale = Vector2(1.18, 1.18)
 script = ExtResource("4_1q7ox")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
 texture_filter = 1
-position = Vector2(5.5, -26.5)
-scale = Vector2(4.34375, 4.34375)
+position = Vector2(-2.5423193, -1.6949127)
+scale = Vector2(0.337, 0.337)
 texture = ExtResource("5_tjhet")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(1, -0.5)
+position = Vector2(-1.2712402, -2.1186218)
 shape = SubResource("RectangleShape2D_neyu1")
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
@@ -344,6 +344,7 @@ texture = ExtResource("10_sc4v1")
 expand_mode = 1
 
 [node name="Menu" type="TextureRect" parent="CharacterBody2D/Camera2D/Dialog"]
+visible = false
 texture_filter = 1
 offset_left = 1352.0
 offset_top = 743.0
@@ -352,6 +353,7 @@ offset_bottom = 1028.0
 texture = ExtResource("11_ct606")
 
 [node name="Option_1" type="Button" parent="CharacterBody2D/Camera2D/Dialog/Menu"]
+visible = false
 layout_mode = 0
 offset_left = 70.0
 offset_top = 50.0
@@ -359,6 +361,7 @@ offset_right = 199.0
 offset_bottom = 88.0
 
 [node name="Option_2" type="Button" parent="CharacterBody2D/Camera2D/Dialog/Menu"]
+visible = false
 layout_mode = 0
 offset_left = 70.0
 offset_top = 92.0
@@ -366,6 +369,7 @@ offset_right = 199.0
 offset_bottom = 130.0
 
 [node name="Option_3" type="Button" parent="CharacterBody2D/Camera2D/Dialog/Menu"]
+visible = false
 layout_mode = 0
 offset_left = 70.0
 offset_top = 134.0
@@ -373,6 +377,7 @@ offset_right = 199.0
 offset_bottom = 172.0
 
 [node name="Option_4" type="Button" parent="CharacterBody2D/Camera2D/Dialog/Menu"]
+visible = false
 layout_mode = 0
 offset_left = 70.0
 offset_top = 176.0
@@ -391,6 +396,16 @@ offset_bottom = 1071.0
 theme_override_fonts/font = ExtResource("8_nssql")
 theme_override_font_sizes/font_size = 50
 text = "Press e to exit the house"
+
+[node name="Night" type="CanvasLayer" parent="CharacterBody2D/Camera2D"]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CharacterBody2D/Camera2D/Night"]
+offset_left = -473.0
+offset_top = -552.0
+offset_right = 2328.0
+offset_bottom = 1275.0
+color = Color(0, 0, 0, 1)
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(709, 479)

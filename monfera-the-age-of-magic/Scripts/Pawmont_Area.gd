@@ -7,7 +7,10 @@ var player_inside = false
 var main
 
 @onready var Main = get_tree().get_root().get_node("House/CharacterBody2D/Camera2D/Dialog")
-
+@onready var Night = get_tree().get_root().get_node("House/CharacterBody2D/Camera2D/Night")
+@onready var NightTint = get_tree().get_root().get_node("House/CharacterBody2D/Camera2D/Night/ColorRect")
+@onready var camera = get_tree().get_root().get_node("House/CharacterBody2D/Camera2D")
+@onready var kai = get_tree().get_root().get_node("Node2D/Kai")
 
 var current_dialog_index = 0
 var dialog_started = false
@@ -15,7 +18,7 @@ var dialog_started = false
 var dialogs = [
 	{
 		"name": "Pawmont",
-		"text": "Ah, Antoni! Just in time. The Etherflow feels… a bit restless tonight. You feel it too, right? The Cradle of Magic hasn’t glowed like this in ages…",
+		"text": "Ah, Antoni! Just in time. The Magical River feels… a bit restless tonight. You feel it too, right? The Cradle of Magic hasn’t glowed like this in ages…",
 		"image": preload("res://images/Pawmont_character/Face.png"),
 		"option1": "Restless? What do you mean?",
 		"option2": "Should we be worried?",
@@ -25,11 +28,12 @@ var dialogs = [
 		"next_option2": 2,  
 		"next_option3": 3, 
 		"next_option4": 4,  
+		"enter": false,
 	},
 
 	{
 		"name": "Etherling",
-		"text": "When the Etherflow moves like this, it’s… unpredictable. Could be exciting, could be trouble.",
+		"text": "When the Magical River moves like this, it’s… unpredictable. Could be exciting, could be trouble.",
 		"image": preload("res://images/Pawmont_character/Face.png"),
 		"next": 5,
 	},
@@ -42,7 +46,7 @@ var dialogs = [
 	},
 	{
 		"name": "Etherling",
-		"text": "If only sunsets hummed like the Etherflow… this is something different.",
+		"text": "If only sunsets hummed like the Magical River… this is something different.",
 		"image": preload("res://images/Pawmont_character/Face.png"),
 		"next": 5,
 	},
@@ -54,9 +58,10 @@ var dialogs = [
 	},
 	{
 		"name": "Etherling",
-		"text": "Tomorrow is the Festival of Light, of course. But tonight… the lake might show things no festival ever will.",
+		"text": "By the way, tomorrow is the Festival of Light, of course.",
 		"image": preload("res://images/Pawmont_character/Face.png"),
 		"next": 6,
+		"enter": false,
 	},
 ]
 
@@ -130,28 +135,112 @@ func show_current_dialog():
 			var key = "option%d" % i
 			if data.has(key):
 				options[key] = data[key]
-		print("Showing dialog index:", current_dialog_index)
+				
 		await Main.Show_Dialog(data["name"], data["text"], data["image"], options)
 		Main.option_callback = Callable(self, "_on_option_selected")
 
-func _unhandled_input(event: InputEvent) -> void:
-	if Main.Menu.visible:
-		return
+		if current_dialog_index == 5:
+			if kai:
+				var target_pos = kai.position + Vector2(-550, 0)
+				var tween = create_tween()
+				tween.tween_property(kai, "position", target_pos, 6).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
+				await tween.finished
 
-	if not Main.typing_finished:
-		if event.is_action_pressed("ui_accept") or (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed):
-			Main.skip_typing = true
-		return
+				var start_index = dialogs.size()
+				dialogs.append_array([
+					{
+						"name": "Kai",
+						"text": "There you are! I’ve been waiting. Do you think you can catch a Monfera before me?",
+						"image": preload("res://images/Kai_character/Front.png"),
+						"option1": "Aight bet",
+						"option2": "I dont want to make you cry.",
+						"option3": false,
+						"option4": false,
+						"next_option1": start_index + 1,
+						"next_option2": start_index + 2,
+						"enter": false,
+					},
+					{
+						"name": "Kai",
+						"text": "Aight then, don’t cry when I win.",
+						"image": preload("res://images/Kai_character/Front.png")
+					},
+					{
+						"name": "Kai",
+						"text": "Ha! You wish. I’ll be the one waiting for you to catch up.",
+						"image": preload("res://images/Kai_character/Front.png")
+					}
+				])
 
-	if event.is_action_pressed("ui_accept") or (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed):
-		var current_data = dialogs[current_dialog_index]
+				current_dialog_index += 1
+				await show_current_dialog()
+			else:
+				push_error("Kai node not found! Check the node path.")
+
+
+
+func try_progress_dialog() -> void:
+	var current_data = dialogs[current_dialog_index]
+	var can_enter = current_data["enter"] if current_data.has("enter") else true
+	if can_enter:
 		if current_data.has("next"):
 			current_dialog_index = current_data["next"]
 		else:
 			current_dialog_index += 1
-			
+
 		if current_dialog_index < dialogs.size():
 			await show_current_dialog()
 		else:
 			await get_tree().create_timer(0.25).timeout
 			Main.hide_dialog()
+
+			if Night:
+				Night.visible = true
+				var start_color = NightTint.color
+				start_color.a = 0
+				NightTint.color = start_color 
+
+			if camera and NightTint:
+				var tween = create_tween()
+				var target_pos = camera.position + Vector2(6800, 0)
+				tween.tween_property(camera, "position", target_pos, 5).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+				var start_color = NightTint.color
+				var end_color = start_color
+				end_color.a = 0.6
+				tween.tween_property(NightTint, "color", end_color, 2).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+			
+				await tween.finished
+				await get_tree().create_timer(2).timeout
+				camera.position = Vector2(0, 0)
+		
+
+
+func _unhandled_input(event):
+	if Main.Menu.visible:
+		get_viewport().set_input_as_handled()
+		return
+
+	var pressed = false
+	if event.is_action_pressed("ui_accept"):
+		pressed = true
+	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		pressed = true
+	if not pressed:
+		return
+
+	var current_data = {}
+	if current_dialog_index < dialogs.size():
+		current_data = dialogs[current_dialog_index]
+
+	var can_enter = current_data.get("enter", true)
+
+	if not Main.typing_finished:
+		Main.skip_typing = true
+		get_viewport().set_input_as_handled()
+		return
+
+	if not can_enter:
+		get_viewport().set_input_as_handled()
+		return
+
+	await try_progress_dialog()

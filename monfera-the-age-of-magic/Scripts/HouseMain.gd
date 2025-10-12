@@ -12,12 +12,7 @@ var dialogs = [
 	},
 	{
 		"name": "Etherling",
-		"text": "Let’s get you moving. Use WASD to walk around, and press E to interact with objects.",
-		"image": preload("res://images/magical_ghost.png")
-	},
-	{
-		"name": "Etherling",
-		"text": "Great! Now try exploring the outside a bit. There’s so much to see!",
+		"text": "Try exploring the outside a bit. There’s so much to see!",
 		"image": preload("res://images/magical_ghost.png")
 	}
 ]
@@ -47,7 +42,7 @@ func show_current_dialog():
 	if Main and current_dialog_index < dialogs.size():
 		var data = dialogs[current_dialog_index]
 		await Main.Show_Dialog(data["name"], data["text"], data["image"])
-		if current_dialog_index == 0:
+		if current_dialog_index == 1:
 			char.enabled = true 
 
 

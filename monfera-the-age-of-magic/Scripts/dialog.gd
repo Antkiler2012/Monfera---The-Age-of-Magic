@@ -41,21 +41,17 @@ func _ready():
 	audio_player.volume_db = -30
 
 func Show_Dialog(name: String, text: String, image: Texture2D, options: Dictionary = {}, callback = null) -> void:
-	# Reset typing control
 	typing_finished = false
 	skip_typing = false
 
-	# Show dialog elements
 	Dialog.visible = true
 	Dialog_Name.text = name
 	Dialog_Image.texture = image
 	Dialog_Text.text = ""
 
-	# Hide menu while typing
 	if Menu:
 		Menu.visible = false
 
-	# Set callback
 	if callback != null:
 		option_callback = callback
 	else:
@@ -63,9 +59,13 @@ func Show_Dialog(name: String, text: String, image: Texture2D, options: Dictiona
 
 	await type_text(text)
 
+	typing_finished = true
+	skip_typing = false
+
 	_set_options(options)
 	if options.size() > 0:
 		Menu.visible = true
+
 
 func _set_options(options: Dictionary) -> void:
 	var option_nodes = [Menu_Option_1, Menu_Option_2, Menu_Option_3, Menu_Option_4]
@@ -94,14 +94,9 @@ func _dummy(option_index: int) -> void:
 	pass
 
 func _on_option_pressed(option_index: int) -> void:
-	print("DEBUG: Option pressed, calling callback with", option_index)
 	Menu.visible = false
 	if option_callback.is_valid():
-		print("DEBUG: Callback target:", option_callback.get_object())
-		print("DEBUG: Callback method:", option_callback.get_method())
 		option_callback.call(option_index)
-	else:
-		print("DEBUG: Callback invalid!")
 
 
 

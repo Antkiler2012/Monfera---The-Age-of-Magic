@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=4 uid="uid://cj1uatc67yftn"]
+[gd_scene load_steps=20 format=4 uid="uid://cj1uatc67yftn"]
 
 [ext_resource type="AudioStream" uid="uid://caigueqvco65f" path="res://sound/Main_theme_song.mp3" id="2_8gbba"]
 [ext_resource type="Script" uid="uid://dghj0h7awmua4" path="res://Scenes/npc.gd" id="7_ynf5e"]
 [ext_resource type="Texture2D" uid="uid://dbjw6cpmptgtc" path="res://images/Pawmont_character/Front.png" id="8_hptm8"]
 [ext_resource type="Script" uid="uid://ffgy21gcdhg4" path="res://Scripts/Pawmont_Area.gd" id="9_d1ilt"]
+[ext_resource type="Texture2D" uid="uid://dwh8maqt04guw" path="res://images/Kai_character/Left.png" id="10_hptm8"]
 [ext_resource type="Texture2D" uid="uid://dr58g0hljneaj" path="res://Farm RPG FREE 16x16 - Tiny Asset Pack/Objects/House.png" id="11_d1ilt"]
 [ext_resource type="Texture2D" uid="uid://ldhyqbq7h1fq" path="res://Farm RPG FREE 16x16 - Tiny Asset Pack/Objects/Interior.png" id="12_fdnlq"]
 [ext_resource type="Texture2D" uid="uid://6urxw1bscp6s" path="res://Farm RPG FREE 16x16 - Tiny Asset Pack/Tileset/Tileset Spring.png" id="13_jkdf5"]
@@ -691,12 +692,16 @@ texture = ExtResource("13_jkdf5")
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h1bgf"]
 texture = ExtResource("14_jkdf5")
 4:0/0 = 0
+4:0/0/z_index = -3
 5:0/0 = 0
+5:0/0/z_index = -3
 6:0/0 = 0
 7:0/0 = 0
 4:1/0 = 0
+4:1/0/z_index = -3
 4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 2.3381634, -8, -1.0791531, 3.2374573, 0.5395756, 8, 8, 8)
 5:1/0 = 0
+5:1/0/z_index = -3
 5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -4.3166094, -8, 1.0791531, 0, 2.6978798, 8, -8, 8)
 6:1/0 = 0
 7:1/0 = 0
@@ -705,9 +710,9 @@ texture = ExtResource("14_jkdf5")
 2:2/0 = 0
 3:2/0 = 0
 4:2/0 = 0
-4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 0.5395756, -8, 0.8992939, -5.2159023, 3.5971737, -2.877739, 8, -4.3166084, 4.6763268, -1.6187286, 3.4173164, 1.4388714, 8, 4.3166103)
+4:2/0/z_index = -3
 5:2/0 = 0
-5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(0.8992939, -8, 0.71943474, -4.6763268, -2.3381634, -3.956891, -5.036045, -4.3166084, -4.856186, -1.7985859, -2.3381634, 0, -1.4388695, 2.8777409, -8, 4.856186, -8, -8)
+5:2/0/z_index = -3
 6:2/0 = 0
 7:2/0 = 0
 8:2/0 = 0
@@ -726,6 +731,9 @@ size = Vector2(66, 135)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fdnlq"]
 size = Vector2(305.5, 251)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d1ilt"]
+size = Vector2(48, 101)
 
 [node name="Node2D" type="Node2D"]
 
@@ -789,3 +797,15 @@ script = ExtResource("9_d1ilt")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pawmont/Area2D"]
 position = Vector2(1087, 500)
 shape = SubResource("RectangleShape2D_fdnlq")
+
+[node name="Kai" type="CharacterBody2D" parent="."]
+position = Vector2(1249, -30)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Kai"]
+position = Vector2(455, 550.5)
+shape = SubResource("RectangleShape2D_d1ilt")
+
+[node name="Sprite2D" type="Sprite2D" parent="Kai"]
+position = Vector2(455.00006, 551)
+scale = Vector2(0.33724853, 0.33724853)
+texture = ExtResource("10_hptm8")
