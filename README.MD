@@ -5,6 +5,7 @@ the game only has a short prolouge rn cuz i dident have enough time to make the 
 first you meet proffessor pawmont who tells you stuff, and then kai comes your rival right, and chalenges you to who ever first catches a monfera (he always wins)
 the game mechanics are so bad, sorry
 oh yea and i once forgot about commits.... and i kinda changed 315 files in one commit, SORRY Reviewing team please spare me. 
+used chat gpt like once or twice for code i couldn't fix
 ---
 
 ## Built With
